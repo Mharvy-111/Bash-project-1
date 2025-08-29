@@ -1,0 +1,72 @@
+    1  # Remove the history file
+    2  rm ~/.bash_history
+    3  # Confirm it's gone
+    4  ls -la ~ | grep bash_history
+    5  # Remove directories recursively
+    6  rm -rf ~/biocomputing
+    7  rm -rf ~/Marvellous
+    8  rm -rf ~/Project1_BASh_Basic
+    9  # Remove individual files
+   10  rm -f ~/project1_commands.txt
+   11  rm -f ~/project1.sh
+   12  rm -f ~/project2_commands.sh
+   13  rm -f ~/README-cloudshell.txt
+   14  ls
+   15  # STEP 1: Print your name
+   16  # -------------------------------
+   17  echo "Marvellous Badmus"
+   18  # STEP 2: Create a folder titled with your name
+   19  # -------------------------------
+   20  mkdir Marvellous && echo "Folder 'Marvellous' created"
+   21  # STEP 3: Create biocomputing folder and change into it (one line)
+   22  # -------------------------------
+   23  mkdir biocomputing && cd biocomputing && echo "Now in directory: $(pwd)"
+   24  # STEP 4: Download the three files
+   25  # -------------------------------
+   26  wget https://raw.githubusercontent.com/josoga2/dataset-repos/main/wildtype.fna
+   27  wget https://raw.githubusercontent.com/josoga2/dataset-repos/main/wildtype.gbk
+   28  wget https://raw.githubusercontent.com/josoga2/dataset-repos/main/wildtype.gbk -O wildtype_dup.gbk
+   29  echo "Downloaded files:"
+   30  ls -lh *.gbk *10u.fna
+   31  # Verify downloads
+   32  if [ -f wildtype.fna ] && [ -f wildtype.gbk ] && [ -f wildtype_dup.gbk ]; then     echo "All files downloaded successfully"; else     echo "Error: Some files did not download"; fi
+   33  # STEP 5: Move the .fna file to the folder titled with your name
+   34  # -------------------------------
+   35  mv wildtype.fna ../Marvellous/ && echo "Moved wildtype.fna to ../Marvellous"
+   36  # Verify move
+   37  if [ -f ../Marvellous/wildtype.fna ]; then     echo "Move successful"; else     echo "Move failed"; fi
+   38  # STEP 6: Delete the duplicate .gbk file
+   39  # -------------------------------
+   40  rm wildtype_dup.gbk && echo "Deleted duplicate gbk file"
+   41  # STEP 7: Confirm if the .fna file is mutant or wild type (stay in biocomputing)
+   42  # -------------------------------
+   43  if grep -iq "tatatata" ../Marvellous/wildtype.fna; then     echo "The file is mutant (tatatata found)";     MUTANT=true; else     echo "The file is wild type (only tata)";     MUTANT=false; fi
+   44  # STEP 8: If mutant, print all matching lines into a new file
+   45  # -------------------------------
+   46  if [ "$MUTANT" = true ]; then     grep -i "tatatata" ../Marvellous/wildtype.fna > mutant_sequences.txt;     echo "Mutant sequences saved to mutant_sequences.txt"; fi
+   47  # STEP 9: Count number of lines (excluding header) in the .gbk file
+   48  # -------------------------------
+   49  tail -n +2 wildtype.gbk | wc -l | awk '{print "Number of lines (excluding header): "$1}'
+   50  # STEP 10: Print the sequence length from LOCUS tag (first line)
+   51  # -------------------------------
+   52  grep "^LOCUS" wildtype.gbk | awk '{print "Sequence length: "$3 " bp"}'
+   53  # STEP 11: Print the source organism from SOURCE tag
+   54  # -------------------------------
+   55  grep "^SOURCE" wildtype.gbk | awk '{$1=""; print "Source organism:" $0}'
+   56  # STEP 12: List all gene names from the .gbk file
+   57  # -------------------------------
+   58  grep "/gene=" wildtype.gbk
+   59  # STEP 13: Clear terminal and print all commands used today # ------------------------------- history > project1_commands.txt
+   60  clear
+   61  echo "Commands used today saved to project1_commands.txt"
+   62  # STEP 14: List files in the two folders
+   63  # -------------------------------
+   64  echo "Files in ../Marvellous:"
+   65  ls -l ~/Marvellous
+   66  echo "Files in biocomputing:"
+   67  ls -l.
+   68  echo "Files in biocomputing:"
+   69  ls -l .
+   70  echo "Files in biocomputing:"
+   71  ls -lh .
+   72  history > projectbasic_command.txt
