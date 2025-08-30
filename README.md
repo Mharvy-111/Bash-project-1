@@ -22,7 +22,7 @@ All commands are run directly in the terminal.
    - Sequence length (from `LOCUS`)
    - Source organism (from `SOURCE`)
    - Gene names (from `/gene=` tags)
-7. Save your command history to `projectbasic_commands.txt`.  
+7. Save your command history to `projectbasic_command.txt`.  
 8. List files in both folders to verify results.
 
 ---
@@ -37,4 +37,4 @@ All commands are run directly in the terminal.
 - Identification of mutant or wild type `.fna` file  
 - `mutant_sequences.txt` file if mutant  
 - `.gbk` file info: line count, sequence length, source organism, gene names  
-- `projectbasic_commands.txt` containing commands used
+- `projectbasic_command.txt` containing commands used
